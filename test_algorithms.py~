@@ -1,0 +1,7 @@
+import algorithms
+
+def test_svm():
+    testing = [("hello there","greeting"),("later","goodbye")]
+    cl = algorithms.svm(testing)
+    test = algorithm.preprocess("hello there friends")
+    cl.classify(test)
