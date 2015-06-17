@@ -30,6 +30,7 @@ def naive_bayes(train_data):
     return NBC(train_data)
 
 #featurize words in a sentence for svm
+#feature choice from this paper: http://www.cs.cornell.edu/people/tj/publications/joachims_98a.pdf
 def preprocess(sentence,label=None):
     tokens = nltk.word_tokenize(sentence)
     tokens = [w for w in tokens if w not in stopwords.words("english")]
