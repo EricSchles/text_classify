@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import LinearSVC
 from nltk.classify.scikitlearn import SklearnClassifier
 from nltk.corpus import stopwords
+from nltk.classify import DecisionTreeClassifier
 import nltk
 
 def TfIdf(document_list):
@@ -38,6 +39,7 @@ def preprocess(sentence,label=None):
     for token in tokens:
         features[token]=tokens.count(token)
     if label:
+        print "got here"
         return (features,label)
     else:
         return features
@@ -50,4 +52,11 @@ def svm(train_data):
         training_data.append(preprocess(data[0],label=data[1]))
     cl = SklearnClassifier(LinearSVC())
     cl.train(training_data)
+    return cl
+
+def decision_tree(train_data):
+    training_data = []
+    for data in train_data:
+        training_data.append(preprocess(data[0],label=data[1]))
+    cl = DecisionTreeClassifier.train(training_data)
     return cl
