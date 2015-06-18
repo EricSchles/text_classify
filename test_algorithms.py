@@ -17,3 +17,8 @@ def test_decision_tree():
     cl = algorithms.decision_tree(testing)
     test = algorithms.preprocess("hello there friends")
     assert cl.classify(test) == "greeting"
+
+def test_textrank():
+    ranker = algorithms.textrank("hello there friends how are you")
+    assert ranker.keyphrases
+    assert ranker.summary

@@ -6,7 +6,12 @@ from sklearn.svm import LinearSVC
 from nltk.classify.scikitlearn import SklearnClassifier
 from nltk.corpus import stopwords
 from nltk.classify import DecisionTreeClassifier
+from nltk.classify import MaxentClassifier
 import nltk
+from textrank import TextRank
+
+def textrank(text):
+    return TextRank(text=text)
 
 def TfIdf(document_list):
     return TfidfVectorizer().fit_transform(document_list)
@@ -60,3 +65,4 @@ def decision_tree(train_data):
         training_data.append(preprocess(data[0],label=data[1]))
     cl = DecisionTreeClassifier.train(training_data)
     return cl
+
