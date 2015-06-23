@@ -44,7 +44,6 @@ def preprocess(sentence,label=None):
     for token in tokens:
         features[token]=tokens.count(token)
     if label:
-        print "got here"
         return (features,label)
     else:
         return features
