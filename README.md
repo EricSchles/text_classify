@@ -5,6 +5,21 @@ A general set of tools for text classification, ranking, feature extraction, and
 
 The goal of this tool is to make it easier to classify documents by providing a simple high level interface for a number of existing tools as well as be a place for novel algorithms to find use among users.
 
+##Dependencies
+
+You can also sudo pip install for each of these packages - I am working on a requirements.txt file
+[install nltk](http://www.nltk.org/install.html)
+[install textblob](http://stevenloria.com/how-to-build-a-text-classification-system-with-python-and-textblob/)
+[install network x](https://networkx.github.io/download.html)
+[install sci-kit learn](http://scikit-learn.org/stable/install.html)
+
+download the nltk corpora:
+
+```
+import nltk
+nltk.download()
+```
+
 ##Installation
 
 To install simply do the following:
