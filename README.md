@@ -5,6 +5,56 @@ A general set of tools for text classification, ranking, feature extraction, and
 
 The goal of this tool is to make it easier to classify documents by providing a simple high level interface for a number of existing tools as well as be a place for novel algorithms to find use among users.
 
+##Installation
+
+To install simply do the following:
+
+`sudo python setup.py install`
+
+This will install the package.  
+
+##Some simple examples
+
+###Naive Bayes Classification
+
+```
+from text_classify.algorithms import naive_bayes  
+#Data appears as [([data to classify],[label]),..]
+testing = [("hello there","greeting"),("later","goodbye")]
+cl = naive_bayes(testing)
+test = "Hello there friends"
+cl.classify(test) # prints "greeting"
+```
+
+###Support Vector Machines
+
+```
+from text_classify.algorithms import svm, preprocess
+#Data appears as [([data to classify],[label]),..]
+testing = [("hello there","greeting"),("later","goodbye")]
+cl = svm(testing)
+test = preprocess("Hello there friends")
+cl.classify(test) # prints "greeting"
+```
+
+###Decision Tree
+```
+from text_classify.algorithms import decision_tree, preprocess
+#Data appears as [([data to classify],[label]),..]
+testing = [("hello there","greeting"),("later","goodbye")]
+cl = decision_tree(testing)
+test = preprocess("Hello there friends")
+cl.classify(test) # prints "greeting"
+```
+
+###Text Rank
+
+```
+ranker = algorithms.textrank("hello there friends how are you")
+print ranker.keyphrases
+print ranker.summary
+```
+
 ##Current algorithms supported
 
 * [TFIDF](http://www.tfidf.com/)
