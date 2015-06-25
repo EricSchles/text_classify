@@ -26,6 +26,27 @@ def ngram(sentence,n):
     input_list = [elem for elem in sentence.split(" ") if elem != '']
     return zip(*[input_list[i:] for i in xrange(n)])
 
+def accuracy(classifier_name,classifier,test_data):
+    """
+    example usage: 
+    
+    from text_classify.algorithms import *
+    import pickle
+    training_data = pickle.load(open("training_data","rb"))
+    test_data = pickle.load(open("test_data,"rb"))
+    cl = svm(training_data)
+    accuracy("svm",cl,test_data)
+    
+    the possible choices for classifiers at present are:
+       svm, decision_tree
+    (more to come soon!)
+    """
+    counter = 0.0
+    for data in test_data:
+        if classifier.classify(data[0]) == data[1]:
+            counter += 1
+    return counter/len(test_data)
+
 # training data throughout: 
 # expects a list of sets of the form:
 # [("first words","first label"),("second words","second label"),..]
@@ -64,4 +85,5 @@ def decision_tree(train_data):
         training_data.append(preprocess(data[0],label=data[1]))
     cl = DecisionTreeClassifier.train(training_data)
     return cl
+
 
