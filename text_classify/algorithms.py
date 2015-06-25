@@ -38,15 +38,20 @@ def accuracy(classifier_name,classifier,test_data):
     accuracy("svm",cl,test_data)
     
     the possible choices for classifiers at present are:
-       svm, decision_tree
+       svm, decision_tree, naive_bayes
     (more to come soon!)
     """
-    counter = 0.0
-    for data in test_data:
-        if classifier.classify(data[0]) == data[1]:
-            counter += 1
-    return counter/len(test_data)
-
+    if classifier_name in ["svm","decision_tree"]:
+        testing = [preprocess(data[0],label=data[1]) for data in test_data]
+        counter = 0.0
+        for ind,data in enumerate(test_data):
+            if classifier.classify(testing[ind][0]) == data[1]:
+                counter += 1
+        return counter/len(test_data)
+    if classifier_name = naive_bayes:
+        return naive_bayes.accuracy(test_data)
+    else:
+        return "no idea!"
 # training data throughout: 
 # expects a list of sets of the form:
 # [("first words","first label"),("second words","second label"),..]
@@ -85,5 +90,4 @@ def decision_tree(train_data):
         training_data.append(preprocess(data[0],label=data[1]))
     cl = DecisionTreeClassifier.train(training_data)
     return cl
-
 
