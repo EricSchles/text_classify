@@ -80,3 +80,8 @@ print ranker.summary
 * [Expectation Maximization-algorithm](http://crow.ee.washington.edu/people/bulyko/papers/em.pdf)
 * [N-grams](https://en.wikipedia.org/wiki/N-gram)
 
+###ToDOs
+
+* implement Deep Belief Networks
+* implement neural networks
+* create a high level interface to send jobs to spark and hadoop
