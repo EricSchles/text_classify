@@ -9,6 +9,7 @@ from nltk.classify import DecisionTreeClassifier
 from nltk.classify import MaxentClassifier
 import nltk
 from textrank import TextRank
+from sklearn import cross_validation
 
 def textrank(text):
     return TextRank(text=text)
@@ -48,7 +49,7 @@ def accuracy(classifier_name,classifier,test_data):
             if classifier.classify(testing[ind][0]) == data[1]:
                 counter += 1
         return counter/len(test_data)
-    if classifier_name = naive_bayes:
+    if classifier_name == naive_bayes:
         return naive_bayes.accuracy(test_data)
     else:
         return "no idea!"
@@ -76,7 +77,7 @@ def preprocess(sentence,label=None):
 
 #how to train: http://glowingpython.blogspot.com/2013/07/combining-scikit-learn-and-ntlk.html
 #expectation is train_data is a tuple
-def svm(train_data):
+def svm(train_data,preprocess=True):
     training_data = []
     for data in train_data:
         training_data.append(preprocess(data[0],label=data[1]))
@@ -91,3 +92,12 @@ def decision_tree(train_data):
     cl = DecisionTreeClassifier.train(training_data)
     return cl
 
+def cross_val(data,model=None):
+    training_set = nltk.classify.apply_features(preprocess,data)
+    cv = cross_validation.KFold(len(training_set), n_folds=10, indices=True, shuffle=False, random_state=None)
+    if model == "svm" or model=="SVM":
+        svm = SklearnClassifier(LinearSVC())
+
+        for traincv, testcv in cv:
+            classifier = svm.train(training_set[traincv[0]:traincv[len(traincv)-1]])
+            print 'accuracy:', nltk.classify.util.accuracy(classifier, training_set[testcv[0]:testcv[len(testcv)-1]])
