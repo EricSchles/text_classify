@@ -49,8 +49,8 @@ def accuracy(classifier_name,classifier,test_data):
             if classifier.classify(testing[ind][0]) == data[1]:
                 counter += 1
         return counter/len(test_data)
-    if classifier_name == naive_bayes:
-        return naive_bayes.accuracy(test_data)
+    if classifier_name == "naive_bayes":
+        return classifier.accuracy(test_data)
     else:
         return "no idea!"
 # training data throughout: 
