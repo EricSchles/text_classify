@@ -77,7 +77,7 @@ def preprocess(sentence,label=None):
 
 #how to train: http://glowingpython.blogspot.com/2013/07/combining-scikit-learn-and-ntlk.html
 #expectation is train_data is a tuple
-def svm(train_data,preprocess=True):
+def svm(train_data,preprocessing=True):
     training_data = []
     for data in train_data:
         training_data.append(preprocess(data[0],label=data[1]))
