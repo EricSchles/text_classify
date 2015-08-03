@@ -10,6 +10,7 @@ from nltk.classify import MaxentClassifier
 import nltk
 from textrank import TextRank
 from sklearn import cross_validation
+import distance
 
 def textrank(text):
     return TextRank(text=text)
@@ -22,6 +23,35 @@ def cosine_similarity(documentA,documentB):
     tfidf = TfIdf(docs)
     cosine_similarities = linear_kernel(tfidf[0:1], tfidf).flatten() 
     return cosine_similarities
+
+
+def str_comp(str1,str2):
+    score = 0
+    words1 = str1.split(" ")
+    words2 = str2.split(" ")
+    if len(words1) < len(words2):
+        for ind,word in enumerate(words1):
+            score += word_comp(word,words2[ind])
+    else:
+        for ind,word in enumerate(words2):
+            score += word_comp(word,words1[ind])
+    return score
+
+def word_comp(str1,str2):
+    subword1 = [str1[:pos] for pos in xrange(1,len(str1)+1)]
+    subword2 = [str2[:pos] for pos in xrange(1,len(str2)+1)]
+    score = 0
+    if len(subword1) < len(subword2):
+        for ind,sub in enumerate(subword1):
+            if sub == subword2[ind]:
+                score += 1
+        return score/float(len(subword1)+len(subword2))
+    else:
+        for ind,sub in enumerate(subword2):
+            if sub == subword1[ind]:
+                score += 1
+        return score/float(len(subword1)+len(subword2))
+
 
 def ngram(sentence,n):
     input_list = [elem for elem in sentence.split(" ") if elem != '']
