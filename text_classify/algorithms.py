@@ -16,7 +16,9 @@ def textrank(text):
     return TextRank(text=text)
 
 def TfIdf(document_list):
-    return TfidfVectorizer().fit_transform(document_list)
+    vectorizer = TfidfVectorizer(stop_words="english")
+    X = vectorizer.fit_transform(document_list)
+    return dict(zip(vectorizer.get_feature_names(),vectorizer.idf_))
 
 def cosine_similarity(documentA,documentB):
     docs = [documentA,documentB]
