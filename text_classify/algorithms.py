@@ -47,12 +47,12 @@ def word_comp(str1,str2):
         for ind,sub in enumerate(subword1):
             if sub == subword2[ind]:
                 score += 1
-        return score/float(len(subword1)+len(subword2))
+        return score/float(len(subword1)*2)
     else:
         for ind,sub in enumerate(subword2):
             if sub == subword1[ind]:
                 score += 1
-        return score/float(len(subword1)+len(subword2))
+        return score/float(len(subword2)*2)
 
 
 def ngram(sentence,n):
