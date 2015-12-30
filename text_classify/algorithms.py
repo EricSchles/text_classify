@@ -8,12 +8,9 @@ from nltk.corpus import stopwords
 from nltk.classify import DecisionTreeClassifier
 from nltk.classify import MaxentClassifier
 import nltk
-from textrank import TextRank
 from sklearn import cross_validation
 import distance
 
-def textrank(text):
-    return TextRank(text=text)
 
 def TfIdf(document_list):
     vectorizer = TfidfVectorizer(stop_words="english")
