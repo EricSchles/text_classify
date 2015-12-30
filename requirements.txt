@@ -1,3 +1,4 @@
+git+git://github.com/EricSchles/text_classify.git
 textblob
 scikit-learn
 nltk
