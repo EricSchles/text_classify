@@ -124,7 +124,7 @@ def decision_tree(train_data):
     cl = DecisionTreeClassifier.train(training_data)
     return cl
 
-def cross_val(data,model=None):
+def cross_validate(data,model=None):
     training_set = nltk.classify.apply_features(preprocess,data)
     cv = cross_validation.KFold(len(training_set), n_folds=10, shuffle=False, random_state=None)
     if model == "svm" or model=="SVM":
