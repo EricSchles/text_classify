@@ -1,0 +1,5 @@
+textblob
+scikit-learn
+nltk
+distance
+
